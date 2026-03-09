@@ -75,7 +75,7 @@ TinyML_project/
     └── doc/
         └── documentation.md
 
-# Hardware Requirements
+## Hardware Requirements
 
 - Arduino Nano 33 BLE
 - OV7670 Camera Module
@@ -88,7 +88,7 @@ TinyML_project/
 
 ---
 
-# Software Requirements
+## Software Requirements
 
 - Arduino IDE
 - Python
