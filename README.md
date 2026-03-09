@@ -75,16 +75,17 @@ TinyML_project/
     └── doc/
         └── documentation.md
 ```
-## Hardware Requirements
+## Hardware Used
 
-- Arduino Nano 33 BLE
-- OV7670 Camera Module
-- Electronic components for testing:
-  - Resistors
-  - Capacitors
-  - LEDs
-- Computer with Arduino IDE
-- Node-RED environment
+The project was implemented using the following hardware components:
+
+- **Arduino Nano 33 BLE**
+- **DHT11 temperature and humidity sensor**
+- **LED indicator**
+- **OV7670 camera module**
+- Jumper wires and breadboard
+
+Since electronic components such as resistors and capacitors were not available during the experimentation phase, a **DHT11 sensor and an LED** were used instead to demonstrate the data acquisition and embedded inference workflow.
 
 ---
 
