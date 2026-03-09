@@ -98,5 +98,70 @@ Since electronic components such as resistors and capacitors were not available 
 - Edge Impulse
 - Node-RED
 
+  ## Quick Start
+
+### Getting started with Vibration Classification (PARTIE 1)
+
+1. Generate training data using the Arduino sketch `data_generation.ino`
+2. Collect IMU vibration data and label the dataset
+3. Train the machine learning model using the Jupyter notebook `training_vibrations.ipynb`
+4. Export the trained model to **TensorFlow Lite (.tflite)**
+5. Deploy the model on the Arduino using `inference_vibrations.ino`
+6. Run real-time inference and observe the results via the Serial Monitor
+
+---
+
+### Getting started with Electronic Component Classification (PARTIE 2)
+
+1. Open the Edge Impulse project (link available in `1-EdgeImpulse/link_to_edge_impulse.md`)
+2. Upload and label images of electronic components (LED, resistor, sensor, etc.)
+3. Train the image classification model in Edge Impulse
+4. Export the model for **Arduino Nano 33 BLE**
+5. Connect the **OV7670 camera module** to the Arduino
+6. Upload `arduino_camera_classification.ino` to perform real-time inference
+7. Send classification results to **Node-RED**
+8. Import `flows.json` and start the **Node-RED dashboard** to visualize component counts
+   
+
+---
+
+## License and Contribution
+
+This project was developed in an **educational context** for teaching **Embedded Artificial Intelligence (TinyML)**.  
+The repository is intended for learning purposes and experimentation with machine learning on embedded systems.
+
+Contributions are welcome through:
+- **Pull requests**
+- **Issue reports**
+- Suggestions for improvements or optimizations
+
+If you would like to contribute, please feel free to open an issue or submit a pull request on this GitHub repository.
+
+**Technologies used:**
+
+- Arduino
+- Edge Impulse
+- TensorFlow Lite
+- Node-RED
+- Python
+
+---
+
+## Support and Troubleshooting
+
+If you encounter issues while running the project, consider checking the following points:
+
+- Ensure that all required **Arduino libraries** are correctly installed.
+- Verify the **hardware connections** (sensors, camera, and board wiring).
+- Make sure the **Edge Impulse model** is properly exported and integrated into the Arduino project.
+- Confirm that **Node-RED is running correctly** and that the flow (`flows.json`) has been properly imported.
+- Check the **Serial Monitor output** for debugging messages.
+
+If the problem persists, you can open an **issue on the GitHub repository** describing:
+- the problem encountered
+- the hardware configuration
+- the error messages displayed
+
+This will help identify and resolve the issue more quickly.
 
 
