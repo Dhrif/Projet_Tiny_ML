@@ -18,3 +18,42 @@ The objective is to implement a complete embedded AI workflow:
 ---
 
 # Repository Structure
+Voici la **partie “Repository Structure” corrigée**, où j’ai **enlevé les `...`** et gardé uniquement les dossiers et fichiers principaux. Tu peux **remplacer directement cette section dans ton README**.
+
+TinyML_project/
+│
+├── README.md
+│
+├── PARTIE_1_ClassificationVibrations/
+│   ├── README.md
+│   ├── 1-DataGeneration_Arduino/
+│   │   └── data_generation.ino
+│   │
+│   ├── 2-Training/
+│   │   ├── dataset/
+│   │   ├── notebooks/
+│   │   │   └── training_vibrations.ipynb
+│   │   └── models/
+│   │
+│   ├── 3-Inference_Arduino/
+│   │   └── inference_vibrations.ino
+│   │
+│   └── doc/
+│       └── documentation.md
+│
+└── PARTIE_2_ClassificationComposants/
+├── README.md
+│
+├── 1-EdgeImpulse/
+│   ├── link_to_edge_impulse.md
+│   └── instructions.md
+│
+├── 2-ArduinoCamera/
+│   └── arduino_camera_classification.ino
+│
+├── 3-NodeRED/
+│   ├── flows.json
+│   └── dashboard/
+│
+└── doc/
+└── documentation.md
