@@ -74,7 +74,7 @@ TinyML_project/
     │
     └── doc/
         └── documentation.md
-
+```
 ## Hardware Requirements
 
 - Arduino Nano 33 BLE
