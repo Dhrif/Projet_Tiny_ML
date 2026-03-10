@@ -1,1 +1,504 @@
-
+[
+    {
+        "id": "4e027f4d8d56933f",
+        "type": "tab",
+        "label": "Flux 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "368699822180bc57",
+        "type": "serial in",
+        "z": "4e027f4d8d56933f",
+        "name": "",
+        "serial": "8edd1cd733689c68",
+        "x": 70,
+        "y": 200,
+        "wires": [
+            [
+                "35e1e35c4dcb9bb7"
+            ]
+        ]
+    },
+    {
+        "id": "c65c3d54e38059d2",
+        "type": "json",
+        "z": "4e027f4d8d56933f",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 690,
+        "y": 200,
+        "wires": [
+            [
+                "a9eb9b1eba453d02",
+                "dc11dbda1fb522fc",
+                "939c4d13b505a541"
+            ]
+        ]
+    },
+    {
+        "id": "1e149943236f094b",
+        "type": "debug",
+        "z": "4e027f4d8d56933f",
+        "name": "debug ",
+        "active": true,
+        "tosidebar": true,
+        "console": true,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 960,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "35e1e35c4dcb9bb7",
+        "type": "switch",
+        "z": "4e027f4d8d56933f",
+        "name": "filtre EI:",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "cont",
+                "v": "EI:",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 250,
+        "y": 200,
+        "wires": [
+            [
+                "b6166ae250a4c8b2"
+            ]
+        ]
+    },
+    {
+        "id": "b6166ae250a4c8b2",
+        "type": "change",
+        "z": "4e027f4d8d56933f",
+        "name": "supprimer EI:",
+        "rules": [
+            {
+                "t": "change",
+                "p": "payload",
+                "pt": "msg",
+                "from": "EI:",
+                "fromt": "str",
+                "to": "",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 470,
+        "y": 200,
+        "wires": [
+            [
+                "c65c3d54e38059d2"
+            ]
+        ]
+    },
+    {
+        "id": "a9eb9b1eba453d02",
+        "type": "function",
+        "z": "4e027f4d8d56933f",
+        "name": "Compteurs classes",
+        "func": "const seuil = 0.80;\nconst label = msg.payload.best;\nconst prob  = msg.payload.probability;\n\nlet counts = flow.get(\"counts\") || {\n    background: 0,\n    dht11: 0,\n    led: 0\n};\n\nif (label && prob >= seuil && counts[label] !== undefined) {\n    counts[label] += 1;\n}\n\nflow.set(\"counts\", counts);\n\nmsg.payload = {\n    ...counts,\n    last: label,\n    lastProb: prob\n};\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 390,
+        "y": 420,
+        "wires": [
+            [
+                "1e149943236f094b",
+                "b06b4ba6e3a43620",
+                "5ed93e7df8078b1d",
+                "eea613739d8565d7"
+            ]
+        ]
+    },
+    {
+        "id": "e13a5e7fb4148da6",
+        "type": "ui_text",
+        "z": "4e027f4d8d56933f",
+        "group": "aaf4f615308cf66d",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "name": "background",
+        "label": "background",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "background",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#000000",
+        "x": 1010,
+        "y": 440,
+        "wires": []
+    },
+    {
+        "id": "9f8dac433729cc48",
+        "type": "ui_text",
+        "z": "4e027f4d8d56933f",
+        "group": "aaf4f615308cf66d",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "name": "dht11",
+        "label": "dht11",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "dht11",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#000000",
+        "x": 950,
+        "y": 500,
+        "wires": []
+    },
+    {
+        "id": "b06b4ba6e3a43620",
+        "type": "change",
+        "z": "4e027f4d8d56933f",
+        "name": "compteur led",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.led",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 750,
+        "y": 380,
+        "wires": [
+            [
+                "70953d344572815a"
+            ]
+        ]
+    },
+    {
+        "id": "5ed93e7df8078b1d",
+        "type": "change",
+        "z": "4e027f4d8d56933f",
+        "name": "compteur background",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.background",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 770,
+        "y": 440,
+        "wires": [
+            [
+                "e13a5e7fb4148da6"
+            ]
+        ]
+    },
+    {
+        "id": "eea613739d8565d7",
+        "type": "change",
+        "z": "4e027f4d8d56933f",
+        "name": "compteur dht11",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.dht11",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 750,
+        "y": 500,
+        "wires": [
+            [
+                "9f8dac433729cc48"
+            ]
+        ]
+    },
+    {
+        "id": "8217f90b7ee8fbf6",
+        "type": "ui_gauge",
+        "z": "4e027f4d8d56933f",
+        "name": "Prob",
+        "group": "b8b6fd2dfdd7fdc7",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Probability",
+        "label": "",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "1",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 1230,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "3a45a3ed72c77ae7",
+        "type": "ui_text",
+        "z": "4e027f4d8d56933f",
+        "group": "b8b6fd2dfdd7fdc7",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "name": "Best",
+        "label": "Best",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#000000",
+        "x": 1210,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "dc11dbda1fb522fc",
+        "type": "change",
+        "z": "4e027f4d8d56933f",
+        "name": "best",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.best",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 870,
+        "y": 100,
+        "wires": [
+            [
+                "3a45a3ed72c77ae7"
+            ]
+        ]
+    },
+    {
+        "id": "939c4d13b505a541",
+        "type": "change",
+        "z": "4e027f4d8d56933f",
+        "name": "probability",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.probability",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 890,
+        "y": 160,
+        "wires": [
+            [
+                "8217f90b7ee8fbf6"
+            ]
+        ]
+    },
+    {
+        "id": "8b42e32df1a7f66c",
+        "type": "ui_button",
+        "z": "4e027f4d8d56933f",
+        "name": "Reset",
+        "group": "8a759031c33442aa",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Reset",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 850,
+        "y": 40,
+        "wires": [
+            [
+                "02a85e54fc2e35fe"
+            ]
+        ]
+    },
+    {
+        "id": "02a85e54fc2e35fe",
+        "type": "function",
+        "z": "4e027f4d8d56933f",
+        "name": "Reset counts",
+        "func": "flow.set(\"counts\", {\n    background: 0,\n    dht11: 0,\n    led: 0\n});\n\nmsg.payload = {\n    background: 0,\n    dht11: 0,\n    led: 0,\n    last: \"-\",\n    lastProb: 0\n};\n\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1010,
+        "y": 40,
+        "wires": [
+            [
+                "b06b4ba6e3a43620",
+                "5ed93e7df8078b1d",
+                "eea613739d8565d7",
+                "1e149943236f094b"
+            ]
+        ]
+    },
+    {
+        "id": "70953d344572815a",
+        "type": "ui_text",
+        "z": "4e027f4d8d56933f",
+        "group": "aaf4f615308cf66d",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "name": "led",
+        "label": "led",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "led",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#000000",
+        "x": 930,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "8edd1cd733689c68",
+        "type": "serial-port",
+        "name": "",
+        "serialport": "COM5",
+        "serialbaud": "115200",
+        "databits": 8,
+        "parity": "none",
+        "stopbits": 1,
+        "waitfor": "",
+        "dtr": "none",
+        "rts": "none",
+        "cts": "none",
+        "dsr": "none",
+        "newline": "\\n",
+        "bin": "false",
+        "out": "char",
+        "addchar": "",
+        "responsetimeout": 10000
+    },
+    {
+        "id": "aaf4f615308cf66d",
+        "type": "ui_group",
+        "name": "Counter",
+        "tab": "cfaa88c368c65d10",
+        "order": 1,
+        "disp": true,
+        "width": 6,
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "b8b6fd2dfdd7fdc7",
+        "type": "ui_group",
+        "name": "Predicted",
+        "tab": "cfaa88c368c65d10",
+        "order": 2,
+        "disp": true,
+        "width": 6,
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "8a759031c33442aa",
+        "type": "ui_group",
+        "name": "Reset",
+        "tab": "cfaa88c368c65d10",
+        "order": 3,
+        "disp": true,
+        "width": 6,
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "cfaa88c368c65d10",
+        "type": "ui_tab",
+        "name": "Components",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "2cfb31a15779daf4",
+        "type": "global-config",
+        "env": [],
+        "modules": {
+            "node-red-node-serialport": "2.0.3",
+            "node-red-dashboard": "3.6.6"
+        }
+    }
+]
