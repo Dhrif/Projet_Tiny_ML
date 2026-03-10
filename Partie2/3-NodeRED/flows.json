@@ -34,8 +34,7 @@
         "wires": [
             [
                 "a9eb9b1eba453d02",
-                "dc11dbda1fb522fc",
-                "939c4d13b505a541"
+                "dc11dbda1fb522fc"
             ]
         ]
     },
@@ -257,34 +256,6 @@
         ]
     },
     {
-        "id": "8217f90b7ee8fbf6",
-        "type": "ui_gauge",
-        "z": "4e027f4d8d56933f",
-        "name": "Prob",
-        "group": "b8b6fd2dfdd7fdc7",
-        "order": 1,
-        "width": 0,
-        "height": 0,
-        "gtype": "gage",
-        "title": "Probability",
-        "label": "",
-        "format": "{{value}}",
-        "min": 0,
-        "max": "1",
-        "colors": [
-            "#00b500",
-            "#e6e600",
-            "#ca3838"
-        ],
-        "seg1": "",
-        "seg2": "",
-        "diff": false,
-        "className": "",
-        "x": 1230,
-        "y": 160,
-        "wires": []
-    },
-    {
         "id": "3a45a3ed72c77ae7",
         "type": "ui_text",
         "z": "4e027f4d8d56933f",
@@ -329,33 +300,6 @@
         "wires": [
             [
                 "3a45a3ed72c77ae7"
-            ]
-        ]
-    },
-    {
-        "id": "939c4d13b505a541",
-        "type": "change",
-        "z": "4e027f4d8d56933f",
-        "name": "probability",
-        "rules": [
-            {
-                "t": "set",
-                "p": "payload",
-                "pt": "msg",
-                "to": "payload.probability",
-                "tot": "msg"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 890,
-        "y": 160,
-        "wires": [
-            [
-                "8217f90b7ee8fbf6"
             ]
         ]
     },
@@ -454,7 +398,7 @@
     {
         "id": "aaf4f615308cf66d",
         "type": "ui_group",
-        "name": "Counter",
+        "name": "Compteur",
         "tab": "cfaa88c368c65d10",
         "order": 1,
         "disp": true,
@@ -465,7 +409,7 @@
     {
         "id": "b8b6fd2dfdd7fdc7",
         "type": "ui_group",
-        "name": "Predicted",
+        "name": "Classe détectée",
         "tab": "cfaa88c368c65d10",
         "order": 2,
         "disp": true,
@@ -487,13 +431,13 @@
     {
         "id": "cfaa88c368c65d10",
         "type": "ui_tab",
-        "name": "Components",
+        "name": "Détection composants",
         "icon": "dashboard",
         "disabled": false,
         "hidden": false
     },
     {
-        "id": "2cfb31a15779daf4",
+        "id": "767c807fbb4849e9",
         "type": "global-config",
         "env": [],
         "modules": {
