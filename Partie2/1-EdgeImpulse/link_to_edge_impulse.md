@@ -14,14 +14,12 @@ This project implements an **embedded image classification model** designed to r
 
 ### Project Details
 
-- **Project Name:** Electronic Components Classification  
-- **Model Type:** Image Classification  
+- **Project Name:** Classification_Composants   
 - **Input Resolution:** 64 × 64 pixels (grayscale)  
 - **Classes:**  
   - Background  
   - LED  
   - DHT11 sensor  
-- **Optimization:** EON Compiler enabled for embedded deployment  
 - **Target Hardware:** Arduino Nano 33 BLE Sense  
 
 The model is optimized to run directly on a **microcontroller with limited memory and processing power**, allowing real-time inference on the embedded device.
